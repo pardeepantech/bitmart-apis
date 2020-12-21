@@ -1,0 +1,34 @@
+{
+  "name": "bitmart-api-model",
+  "version": "1.0.1",
+  "description": "This package is use to interact with bitmart",
+  "main": "lib/index.js",
+  "bin": "lib/index.js",
+  "types": "lib",
+  "scripts": {
+    "build": "tsc -p .",
+    "start": "ts-node ./src/index.ts",
+    "publish": "npm publish --access=publish"
+  },
+  "author": "pardeep_ant",
+  "license": "MIT",
+  "keywords": [
+    "tsconfig",
+    "typescript"
+  ],
+  "devDependencies": {
+    "@types/crypto-js": "^4.0.1",
+    "typescript": "^4.1.3",
+    "@types/node": "^14.14.14"
+  },
+  "dependencies": {
+    "axios": "^0.21.0",
+    "crypto-js": "^4.0.0",
+    "ts-node": "^9.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pardeepantech/bitmart-apis"
+  },
+  "homepage": "https://github.com/pardeepantech/bitmart-apis"
+}
