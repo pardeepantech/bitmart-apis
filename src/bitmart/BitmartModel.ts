@@ -17,11 +17,20 @@ class BitmartModel extends Bitmart {
     );
     return balances;
   };
-  placeOrder = async (symbol:string,side:string,type:string,size:number,price:number) => {
+  placeMarketOrder = async(symbol:string,side:string,size:number)=>{
     const order = await this.privateRequest("post", "/spot/v1/submit_order", {
       "symbol": symbol,
       "side": side,
-      "type": type,
+      "type": 'market',
+      "size": size,
+    });
+    return order;
+  }
+  placeLimitOrder = async (symbol:string,side:string,size:number,price:number) => {
+    const order = await this.privateRequest("post", "/spot/v1/submit_order", {
+      "symbol": symbol,
+      "side": side,
+      "type": 'limit',
       "size": size,
       "price": price,
     });
@@ -50,6 +59,13 @@ class BitmartModel extends Bitmart {
   getServerTime = async()=>{
     const serverTime = await this.publicRequest('get','/system/time');
     return serverTime;
+  }
+  cancelAllOrders = async(symbol:string,side:string)=>{
+    const order = await this.privateRequest("post", "/spot/v1/cancel_orders", {
+      "symbol":symbol,
+      "side":side
+    });
+    return order;
   }
 }
 
