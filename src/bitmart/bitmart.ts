@@ -4,6 +4,7 @@ const qs = require("qs");
 class Bitmart {
   private apiUrl: string = "https://api-cloud.bitmart.com";
   private requestHandler: any = "";
+  private timestamp:any = '';
   constructor(
     private apiName: string,
     private apiAccess: string,
@@ -12,11 +13,12 @@ class Bitmart {
     this.initRequestHadler();
   }
   private getSignedMessage(params: any) {
-    console.log("params", params);
+    // console.log("params", params);
+  //  return   crypto.createHmac("SHA256", this.apiSecret).update(this.timestamp  + "#" + this.apiName + "#" + params).digest("hex");
     return cryptoJs.HmacSHA256(
-      new Date().getTime() + "#" + this.apiName + "#" + params,
+      this.timestamp  + "#" + this.apiName + "#" + params,
       this.apiSecret
-    );
+    ).toString();
   }
  private initRequestHadler = async () => {
     this.requestHandler = axios.create({
@@ -30,8 +32,7 @@ class Bitmart {
       async (config: any) => {
         config.headers["Content-Type"] = "application/json";
         if(!config.noToken){
-
-            config.headers["X-BM-TIMESTAMP"] = new Date().getTime();
+            config.headers["X-BM-TIMESTAMP"] = this.timestamp;
             config.headers["X-BM-KEY"] = this.apiAccess;
         }
         console.log("final hit with", config);
@@ -42,7 +43,9 @@ class Bitmart {
       }
     );
   };
-  protected doRequest = async (method: string, endpoint: string, payload: any = null) => {
+  protected privateRequest = async (method: string, endpoint: string, payload: any = null) => {
+    this.timestamp = Date.now().toString();
+    console.log("timestamp from server",this.timestamp)
     const config: any = {
       method,
       url: endpoint,
@@ -61,7 +64,7 @@ class Bitmart {
     console.log("daat", result);
     return result;
   };
-  protected async doPublicRequest(method:string, endpoint:string, payload = null) {
+  protected async publicRequest(method:string, endpoint:string, payload = null) {
     const config:any = {
       method,
       url: endpoint,
@@ -75,5 +78,6 @@ class Bitmart {
 
     return result;
   }
+
 }
 export default Bitmart;
