@@ -23,10 +23,11 @@ const testGetRequest = await obj.testGet();
 const testPostRequest = await obj.testPost();
 const ticker = await obj.getTicker('BTC_USDT');
 const balance = await obj.getBalance();
-const submitOrder = await obj.placeOrder('SYMBOL','BUY|SELL','LIMIT|MARKET' ,'QTY','PRICE');
+const submitLimitOrder = await obj.placeLimitOrder('SYMBOL','buy|sell','QTY','PRICE');
+const submitMarketOrder = await obj.placeMarketOrder('SYMBOL','buy|sell','QTY');
 const getOrder = await obj.getOrder('SYMBOL','ORDER_ID');
 const cancelOrder = await obj.cancelOrder('SYMBOL','ORDER_ID');
-
+const cancelAllOrders = await obj.cancelAllOrders('SYMBOL','buy|sell');
 ```
 
 ## Contributing
