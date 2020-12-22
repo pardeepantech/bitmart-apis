@@ -13,7 +13,7 @@ class Bitmart {
     this.initRequestHadler();
   }
   private getSignedMessage(params: any) {
-    // console.log("params", params);
+    console.log("params", params);
   //  return   crypto.createHmac("SHA256", this.apiSecret).update(this.timestamp  + "#" + this.apiName + "#" + params).digest("hex");
     return cryptoJs.HmacSHA256(
       this.timestamp  + "#" + this.apiName + "#" + params,
@@ -56,8 +56,9 @@ class Bitmart {
         console.log("post method", payload);
         config.data =  JSON.stringify(payload);
       }
+      let authString = (method === 'post') ? JSON.stringify(payload) : qs.stringify(payload);
       config.headers = {
-        "X-BM-SIGN": this.getSignedMessage(JSON.stringify(payload)),
+        "X-BM-SIGN": this.getSignedMessage(authString),
       };
     }
     const { data: result } = await this.requestHandler(config);

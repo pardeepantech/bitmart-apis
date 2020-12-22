@@ -10,7 +10,7 @@ npm i bitmart-api-model
 
 ## Import Package
 
-```import
+```node
 import BitmartModel from 'bitmart-api-model';
 const obj = new BitmartModel('memo','access_token','api_secret');
 ```
@@ -20,7 +20,7 @@ const obj = new BitmartModel('memo','access_token','api_secret');
 ```node
 const getServerTime = await obj.getServerTime();
 const testGetRequest = await obj.testGet();
-cosnt testPostRequest = await obj.testPost();
+const testPostRequest = await obj.testPost();
 const ticker = await obj.getTicker('BTC_USDT');
 const balance = await obj.getBalance();
 const submitOrder = await obj.placeOrder('SYMBOL','BUY|SELL','LIMIT|MARKET' ,'QTY','PRICE');
