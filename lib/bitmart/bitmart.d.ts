@@ -4,12 +4,13 @@ declare class Bitmart {
     private apiSecret;
     private apiUrl;
     private requestHandler;
+    private timestamp;
     constructor(apiName: string, apiAccess: string, apiSecret: string);
     private getSignedMessage;
     private initRequestHadler;
     private requestMiddleware;
-    protected doRequest: (method: string, endpoint: string, payload?: any) => Promise<any>;
-    protected doPublicRequest(method: string, endpoint: string, payload?: null): Promise<any>;
+    protected privateRequest: (method: string, endpoint: string, payload?: any) => Promise<any>;
+    protected publicRequest(method: string, endpoint: string, payload?: null): Promise<any>;
 }
 export default Bitmart;
 //# sourceMappingURL=bitmart.d.ts.map
