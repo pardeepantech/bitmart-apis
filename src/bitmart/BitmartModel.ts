@@ -18,12 +18,18 @@ class BitmartModel extends Bitmart {
     return balances;
   };
   placeMarketOrder = async(symbol:string,side:string,size:number)=>{
+    let notional:number = size;
+    if(side === 'buy'){
+      const ticker = await this.getTicker(symbol);
+      const lastPrice = ticker.data.tickers[0].last_price;
+      notional = +(lastPrice * size).toFixed(8);
+    }
     const order = await this.privateRequest("post", "/spot/v1/submit_order", {
       "symbol": symbol,
       "side": side,
       "type": 'market',
       "size": size,
-      "notional":size
+      "notional":notional
     });
     return order;
   }
