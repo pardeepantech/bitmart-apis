@@ -23,6 +23,7 @@ class BitmartModel extends Bitmart {
       "side": side,
       "type": 'market',
       "size": size,
+      "notional":size
     });
     return order;
   }

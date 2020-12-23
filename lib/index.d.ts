@@ -1,3 +1,2 @@
-import BitmartModel from './bitmart/BitmartModel';
-export default BitmartModel;
+export {};
 //# sourceMappingURL=index.d.ts.map
