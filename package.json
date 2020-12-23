@@ -1,6 +1,6 @@
 {
   "name": "bitmart-api-model",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "This package is use to interact with bitmart",
   "main": "lib/index.js",
   "bin": "lib/index.js",
