@@ -5,6 +5,7 @@ declare class Expose extends Bitmart {
     getBalance: () => Promise<void>;
     placeOrder: () => Promise<void>;
     getOrder: () => Promise<void>;
+    getKLineData: () => Promise<void>;
 }
 export default Expose;
 //# sourceMappingURL=expose.d.ts.map
