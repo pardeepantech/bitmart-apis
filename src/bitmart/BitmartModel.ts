@@ -74,6 +74,10 @@ class BitmartModel extends Bitmart {
     });
     return order;
   }
+  getKLineData = async (symbol: string,step:number,from: number,to: number) => { 
+    const kLineData = await this.publicRequest('get', `/spot/v1/symbols/kline?symbol=${symbol}&step=${step}&from=${from}&to=${to}`);
+    return kLineData;
+  };
 }
 
 export default BitmartModel;
